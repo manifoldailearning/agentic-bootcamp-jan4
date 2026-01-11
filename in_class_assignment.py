@@ -9,7 +9,7 @@ import json
 @tool
 def get_weather(city: str) -> str:
     """Get the current weather for a city.
-    
+
     Args:
         city: The name of the city
     """
@@ -39,9 +39,36 @@ def book_flight(origin: str, destination: str, date: str) -> dict:
         "status": "confirmed"
     }
 
+"""
+Modify the Above code to create a new tool called best food in each city.
+(you can use the internet to find the best food in each city, create it as simple dictionary inside it and return the result)
+
+bind the new tool along with existing tools
+invoke the model with the new prompt "What is the best food in Bangalore?"
+
+Example Best food:
+{"Bangalore": "Masala Dosa",
+"Mumbai": "Vada Pav",
+"Delhi": "Chaat"}
+
+"""
+# example tool
+@tool
+def best_food(city: str) -> str:
+    """Get the best food in a city.
+
+    Args:
+        city: The name of the city
+    """
+    # Mock implementation
+    best_food_data = {
+        "bangalore": "Masala Dosa",
+        "mumbai": "Vada Pav",    "delhi": "Chaat"
+    }
+    return best_food_data.get(city.lower(), "Best food data not available")
 
 # list of tools
-tools = [get_weather, book_flight]
+tools = [get_weather, book_flight,best_food]
 tool_names = {t.name:t for t in tools}
 print("Tool Names: ", tool_names)
 print("*************************************************")
@@ -72,37 +99,9 @@ def run(prompt: str):
     print("*************************************************")
     final_msg = llm_openai.invoke(messages)
     print("Final Model Output: ", final_msg.content)
-  
+
 
 #run("What is the weather in Bangalore?")
 run("Book a flight from Bangalore to Mumbai on 12/01/2026")
-
-
-### INSTRUCTIONS###
-f"""
-Modify the Above code to create a new tool called best food in each city.
-(you can use the internet to find the best food in each city, create it as simple dictionary inside it and return the result)
-
-bind the new tool along with existing tools
-invoke the model with the new prompt "What is the best food in Bangalore?"
-
-Example Best food:
-{"Bangalore": "Masala Dosa",
-"Mumbai": "Vada Pav",
-"Delhi": "Chaat"}
-
-"""
-# example tool
-@tool
-def best_food(city: str) -> str:
-    """Get the best food in a city.
-    
-    Args:
-        city: The name of the city
-    """
-    # Mock implementation
-    best_food_data = {
-        "bangalore": "Masala Dosa",
-        "mumbai": "Vada Pav",    "delhi": "Chaat"
-    }
-    return best_food_data.get(city.lower(), "Best food data not available")
+#run("Find the Best food in a city?")
+run("What's the best food of Delhi")
