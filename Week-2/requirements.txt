@@ -1,0 +1,20 @@
+# Core LangChain dependencies
+langchain
+langchain-openai
+langchain-core
+
+# Environment management
+python-dotenv
+
+# Data validation and structured output
+pydantic
+
+# YAML file parsing for prompt management
+pyyaml
+
+# Web framework for interactive demo
+streamlit
+
+# Optional: Redis for production rate limiting and cost tracking
+# Uncomment if you want to use Redis (requires Redis server running)
+redis
