@@ -64,7 +64,7 @@ class BillingAgent:
     """ Billing Agent """
 
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4.1-nano", temperature=0.6)
+        self.llm = ChatOpenAI(model="gpt-4.1-mini", temperature=0.6)
     # Use the cheapest model for this agent
 
     def handle(self, ticket: str) -> str : # Enhance the readability of the code by using the return type
@@ -87,7 +87,7 @@ class TechnicalAgent:
     """ Technical Agent """
 
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4.1-nano", temperature=0.6)
+        self.llm = ChatOpenAI(model="gpt-4.1-mini", temperature=0.6)
 
     def handle(self, ticket: str) -> str :
         """ Handle the Technical related ticket"""
